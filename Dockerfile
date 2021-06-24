@@ -2,7 +2,7 @@ FROM adoptopenjdk/openjdk11
 MAINTAINER Nawal <nawal@afnor.com>
   
   
-# on va installer les packages qu'on aura besoin
+# on va installer les packages qu'on aura besoin pour les etapes 
 RUN apt-get update 
 #RUN apt-get install dos2unix
 RUN apt-get clean
