@@ -2,7 +2,7 @@ FROM adoptopenjdk/openjdk11
 MAINTAINER Nawal <nawal@afnor.com>
   
   
-# on va installer les packages qu on aura besoin
+# on va installer les packages qu'on aura besoin
 RUN apt-get update 
 #RUN apt-get install dos2unix
 RUN apt-get clean
@@ -17,7 +17,7 @@ ADD ./start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
 #RUN dos2unix /usr/local/bin/start.sh
 
-# Start Application
+# Start l'Application
 CMD ["/bin/bash", "/usr/local/bin/start.sh"]
 
 
