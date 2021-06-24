@@ -1,0 +1,110 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Password Manager | Passwords</title>
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <style>
+        body {
+            padding-top: 5rem;
+        }
+        .starter-template {
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <script src="https://kit.fontawesome.com/00a551c8a1.js" crossorigin="anonymous"></script>  
+</head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="">Password Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/passwords/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/passwords/add">Add password</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/authentication/logout">Logout</a>
+      </li>
+    </ul>
+    <p class="form-inline my-2 my-lg-0" th:text="${username}" style="color: white;">
+        Mohammed
+    </p>
+  </div>
+</nav>
+
+<main role="main" class="container">
+    <h1>Your passwords</h1>
+    <table id="passwords_table" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Label</th>
+            <th>Account</th>
+            <th>Password</th>
+            <th>Url</th>
+            <th>Tags</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="password: ${passwords}">
+            <td><div style="text-align: center;"><i class="fa fa-lock"></i></div></td>
+            <td th:text="${password.getLabel()}"></td>
+            <td th:text="${password.getAccount()}"></td>
+            <td th:text="${password.getPassword()}"></td>
+            <td th:text="${password.getUrl()}"></td>
+            <td th:text="${password.getTags()}"></td>
+            <td>
+                <form action="passwords/delete" method="post">
+                    <input type="hidden" name="id" th:value="${password.getId()}" />
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+
+</main><!-- /.container -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+      <script>
+          $(document).ready( function () {
+              $('#passwords_table').DataTable();
+            } );
+      </script>
+    </body>
+</html>
