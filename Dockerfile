@@ -2,17 +2,17 @@ FROM adoptopenjdk/openjdk11
 MAINTAINER Nawal <nawal@afnor.com>
   
   
-# Install needed package
+# on va installer les packages qu on aura besoin
 RUN apt-get update 
 #RUN apt-get install dos2unix
 RUN apt-get clean
 
 # Install wait-for-it
 
-# Install JAR file
+# Installer le jar file 
 ADD afnor.jar /app/afnor.jar
 
-# Install Running file
+# Installer Running file
 ADD ./start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
 #RUN dos2unix /usr/local/bin/start.sh
